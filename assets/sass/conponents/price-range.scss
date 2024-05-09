@@ -1,0 +1,19 @@
+.priceRange-container {
+  .slider-demo-block {
+    @include flexBox(flex-start, center, row);
+    max-width: 600px;
+  }
+  .slider-demo-block .el-slider {
+    margin-top: 0;
+    margin-left: 12px;
+
+    .el-slider__button {
+      border: 2px solid var(--el-color-info-light-5);
+    }
+
+    .el-slider__runway {
+      background-color: var(--el-color-info-light-5);
+      height: 2px;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.shop-container-page {
+    @include flexBox(flex-start, stretch, row);
+    gap: 16px;
+
+    .leftSide {
+        @include flexBox(flex-start, center, column);
+        width: 20%;
+    }
+
+    .rightSide {
+        @include flexBox(flex-start, center, column);
+        width: 80%;
+        gap: 16px;
+    }
+
+}

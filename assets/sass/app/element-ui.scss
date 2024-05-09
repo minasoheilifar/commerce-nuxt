@@ -156,6 +156,10 @@
             background-color: var(--el-color-primary-light-9);
         }
   }
+
+  .el-input__inner{
+    background-color: red !important;
+  }
   
 //   .el-checkbox {
 //     display: flex !important;

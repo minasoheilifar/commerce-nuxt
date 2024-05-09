@@ -1,0 +1,12 @@
+.searchbar-container {
+    @include flexBox(center, center, row);
+    flex-wrap: nowrap;
+    gap: 8px;
+
+    .sortBy{
+        @include flexBox(center, center, row);
+        flex-wrap: nowrap;
+        text-wrap: nowrap;
+    }
+    
+}

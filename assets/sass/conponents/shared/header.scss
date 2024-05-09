@@ -1,16 +1,15 @@
 .header-container{
+    @include flexBox(space-between, center, row);
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-bottom: 24px;
 
     .badge{
         border-radius: 100%;
         background-color: var(--color-primary);
     }
-    .header-rightSide{
-        display: flex;
+
+    .rightSide{
+        @include flexBox(flex-start, stretch, row);
         gap: 16px;
     }
 }

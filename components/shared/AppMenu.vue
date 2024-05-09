@@ -1,14 +1,13 @@
 
 <template>
-  <div class="">
-    <ul class="menu-container">
+  <div class="menu-container">
+    <ul class="items">
       <li v-for="item in listMenu" :key="item.href" ><NuxtLink :to="item.href">{{ item.name }}</NuxtLink></li>
     </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
 
 interface IlistMenu {
   name:string
@@ -25,6 +24,6 @@ const listMenu=ref<IlistMenu[]>([
 
 
 <style lang="scss">
-@import '~/sass/conponents/shared/menu.scss';
+@import '/assets/sass/components/shared/menu.scss';
 </style>
 

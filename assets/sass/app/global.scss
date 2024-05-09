@@ -1,16 +1,16 @@
-:root {
-    // color primary must be rgba numbers only
-    --color-primary: #6f4e66;
-    --color-secondary: #303030;
-    // --color-primary: 174, 36, 77;
+// :root {
+//     // color primary must be rgba numbers only
+//     --color-primary: #6f4e66;
+//     --color-secondary: #303030;
+//     // --color-primary: 174, 36, 77;
   
-    // font families
-    --font-family: 'Roboto', Tahoma, sans-serif;
+//     // font families
+//     --font-family: 'Roboto', Tahoma, sans-serif;
   
-    &:lang(ku) {
-      --font-family: 'Bahij', 'Roboto', Tahoma, sans-serif;
-    }
-  }
+//     &:lang(ku) {
+//       --font-family: 'Bahij', 'Roboto', Tahoma, sans-serif;
+//     }
+//   }
   
   body {
     margin: 0;

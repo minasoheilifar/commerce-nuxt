@@ -1,15 +1,16 @@
 <template>
   <div class="products-container">
-    <div class="products-items" v-for="item in listProducts" :key="item.id">
-      <img class="products-image" :src="item.image" alt="image" />
-      <p class="products-name">{{ item.name }}</p>
+
+    <div class="items" v-for="item in listProducts" :key="item.id">
+      <img class="images" :src="item.image" alt="image" />
+      <p class="names">{{ item.name }}</p>
       <p>$ {{ item.price }}</p>
     </div>
+    
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 interface IlistProducts {
   id: number;
   name: string;
@@ -78,5 +79,5 @@ const listProducts = ref<IlistProducts[]>([
 ]);
 </script>
 <style lang="scss">
-@import "~/sass/conponents/products/products.scss";
+@import "/assets/sass/conponents/products.scss";
 </style>

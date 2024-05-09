@@ -1,26 +1,19 @@
 <template>
   <div class="searchbar-container">
-    <!-- <div class="searchbar"> -->
-        <el-autocomplete
-        v-model="state"
-        :fetch-suggestions="querySearchAsync"
-        placeholder="Search..."
-        @select="handleSelect"
-        />
-    <!-- </div> -->
+    <el-autocomplete
+      v-model="state"
+      :fetch-suggestions="querySearchAsync"
+      placeholder="Search..."
+      @select="handleSelect"
+    />
     <div class="sortBy">
-        <p>
-          Sort By:
-        </p>
-        <button class="">Featured</button>
+      <p>Sort By:</p>
+      <button>Featured</button>
     </div>
-
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-
 const state = ref("");
 
 interface LinkItem {
@@ -70,5 +63,5 @@ onMounted(() => {
 });
 </script>
 <style lang="scss">
-@import "~/sass/conponents/shared/searchbar.scss";
+@import "/assets/sass/components/shared/searchbar.scss";
 </style>

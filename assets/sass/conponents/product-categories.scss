@@ -1,0 +1,12 @@
+.categories-container {
+
+  .section {
+    @include flexBox(center, start, column);
+    gap: 8px;
+
+    .items {
+      @include flexBox(flex-start, stretch, row);
+      gap: 8px;
+    }
+  }
+}

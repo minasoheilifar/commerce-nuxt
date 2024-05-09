@@ -1,11 +1,10 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   vite:{
     css:{
       preprocessorOptions:{
         scss: {
           refresh: true,
-          additionalData: `@import "~/sass/main-variables.scss";`,
+          additionalData: `@import "~/assets/sass/main-variables.scss";`,
           includePaths: ['sass']
         }
       
@@ -14,8 +13,10 @@ export default defineNuxtConfig({
 
   },
   modules: ['@element-plus/nuxt'],
-
-
-
-
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false
+    }
+  ],
 });

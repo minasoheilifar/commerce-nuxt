@@ -1,7 +1,10 @@
 <template>
+<div class="categories-container">
   <h3 class="mt-0">Categories</h3>
-  <div class="categories-container">
-    <div class="categories-items">
+
+  <div class="section">
+    <div class="items">
+
       <input
         type="checkbox"
         id="allProducts"
@@ -9,17 +12,24 @@
         v-model="checkAll"
         :indeterminate="isIndeterminate"
       />
+
       <label for="allProducts">All Products</label>
     </div>
-    <div class="categories-items" v-for="item in listCategories" :key="item.id">
+
+    <div class="items" v-for="item in listCategories" :key="item.id">
       <input type="checkbox" id="{{item.id}}" value="{{" item.name }}   />
       <label for="allProducts">{{ item.name }}</label>
     </div>
   </div>
+</div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+// import {IlistCategories} from "~/typescript/interfaces";
+export interface IlistCategories {
+    id: number
+    name: string
+  }
 
 const checkAll = ref(false);
 const isIndeterminate = ref(true);
@@ -35,10 +45,7 @@ const isIndeterminate = ref(true);
 //   isIndeterminate.value = checkedCount > 0 && checkedCount < listCategories.value.length
 // }
 
-interface IlistCategories {
-  id: number;
-  name: string;
-}
+
 const listCategories = ref<IlistCategories[]>([
   { id: 1, name: "Desks" },
   { id: 2, name: "Furnitures" },
@@ -53,5 +60,5 @@ const listCategories = ref<IlistCategories[]>([
 </script>
 
 <style lang="scss">
-@import "~/sass/conponents/categories/categories.scss";
+@import "/assets/sass/conponents/product-categories.scss";
 </style>

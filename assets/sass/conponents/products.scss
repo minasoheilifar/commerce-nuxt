@@ -2,17 +2,17 @@
     display: grid;
     gap: 8px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    .products-items{
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
 
+    .items{
+        @include flexBox(flex-start, stretch, column);
+        gap: 8px;
     
-    .products-image{
+    .images{
         width: 200px;
         height: 200px;
     }
-    .products-name{
+
+    .names{
         color: var(--color-primary);
     }
 }
