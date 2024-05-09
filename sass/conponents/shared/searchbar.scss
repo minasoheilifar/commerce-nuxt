@@ -1,0 +1,19 @@
+.searchbar-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    // background-color: red;
+
+    .sortBy{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        text-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+    
+}

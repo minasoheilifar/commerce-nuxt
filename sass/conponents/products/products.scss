@@ -1,0 +1,19 @@
+.products-container{
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    .products-items{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+    
+    .products-image{
+        width: 200px;
+        height: 200px;
+    }
+    .products-name{
+        color: var(--color-primary);
+    }
+}
+}

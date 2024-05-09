@@ -1,0 +1,17 @@
+.shop-container {
+    display: flex;
+    gap: 16px;
+
+    .shop-leftSide {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+    }
+    .shop-rightSide {
+        flex-direction: column;
+        width: 80%;
+        display: flex;
+        gap: 16px;
+    }
+
+}

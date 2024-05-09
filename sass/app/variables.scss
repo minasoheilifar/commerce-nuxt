@@ -1,0 +1,111 @@
+// color primary
+$color-primary: rgb(var(--color-primary));
+$color-secondary: rgb(var(--color-secondary));
+
+@function colorPrimaryRGBA($opacity) {
+  @return rgba(var(--color-primary), $opacity);
+}
+
+// color success
+$color-success: #1ed600;
+$color-success-light: #7bf569;
+$color-success-dark: #1e8a0d;
+
+// color warning
+$color-warning: #ce9e0a;
+$color-warning-light: #ffdb6e;
+$color-warning-dark: #a07e19;
+
+// color danger
+$color-danger: #f80404;
+$color-danger-light: #fa8484;
+$color-danger-dark: #851414;
+
+// color info
+$color-info: #000aff;
+
+// text colors
+$color-text-light: #747474;
+$color-text-dark: #2e2f2a;
+$color-text-secondary: #9f9f9f;
+$color-text-primary: #343434;
+
+// border colors
+$color-border-dark: #d1d1d1;
+$color-border: rgba($color-border-dark, 0.7);
+$color-border-success: rgba($color-success, 0.7);
+$color-border-warning: rgba($color-warning, 0.7);
+$color-border-danger: rgba($color-danger, 0.7);
+
+$color-disabled: #c5c5c5;
+$color-stroke: #d1d1d1;
+$color-white-1: #fff;
+$color-white-2: #fbfcfd;
+
+// element bg
+$color-element-bg: #f6f6f6;
+$color-element-bg-light: #fbfcfd;
+$color-element-bg-success: rgba($color-success, 0.2);
+$color-element-bg-success-light: rgba($color-success, 0.07);
+$color-element-bg-warning: rgba($color-warning, 0.3);
+$color-element-bg-warning-light: rgba($color-warning, 0.1);
+$color-element-bg-danger: rgba($color-danger, 0.3);
+$color-element-bg-danger-light: rgba($color-danger, 0.04);
+$color-element-bg-secondary: #00ffff;
+
+// other colors
+$color-orange: #ff6421;
+
+// default border radius
+$large-border-radius: 16px;
+$medium-border-radius: 8px;
+$small-border-radius: 4px;
+
+// font sizes
+$font-size-xxl: 36px;
+$font-size-xl: 24px;
+$font-size-lg: 18px;
+$font-size-md: 14px;
+$font-size-sm: 12px;
+$font-size-xs: 10px;
+
+//  font weights
+$font-weight-light: 400;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 900;
+
+// other default styles
+$primary-shadow: 0px 4px 8px colorPrimaryRGBA(0.1);
+$danger-shadow: 0px 4px 8px rgba($color-danger, 0.4);
+$success-shadow: 0px 4px 8px rgba($color-success, 0.4);
+$warning-shadow: 0px 4px 8px rgba($color-warning, 0.4);
+
+$primary-btn-shadow: 0px 4px 16px colorPrimaryRGBA(0.24);
+$danger-btn-shadow: 0px 4px 16px rgba($color-danger, 0.24);
+$success-btn-shadow: 0px 4px 16px rgba($color-success, 0.24);
+$warning-btn-shadow: 0px 4px 16px rgba($color-warning, 0.24);
+
+$default-transition: 0.3s;
+$default-border: 1px solid $color-border;
+$default-border-dark: 1px solid $color-border-dark;
+
+// glass effect
+$back-drop-blur: 23.5px;
+$back-drop-color: rgba(#000, 0.8);
+
+// screen breakpoints
+$desktop-breakpoint: 1400px;
+$mini-desktop-breakpoint: 1200px;
+$laptop-breakpoint: 992px;
+$tablet-breakpoint: 768px;
+$mobile-breakpoint: 575px;
+$mobile-sm-breakpoint: 420px;
+$mobile-xs-breakpoint: 360px;
+
+// sidebar and header size
+$headerHeight: 80px;
+$sidebarWidth: 80px;
+$settingsSidebarWidth: 290px;
+$orderSidebarWidth: 350px;
+$layoutCorners: 40px;
