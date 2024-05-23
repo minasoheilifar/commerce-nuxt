@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Customizable Desk",
+    "price": 750.0,
+    "categoryId": 1,
+    "image": "/images/Customizable-Desk.png",
+    "isNew": true,
+    "isSale": false
+  },
+  {
+    "id": 2,
+    "name": "Storage Box",
+    "price": 15.8,
+    "categoryId": 3,
+    "image": "/images/Storage-Box.png",
+    "isNew": false,
+    "isSale": false
+  },
+  {
+    "id": 3,
+    "name": "Conference Chair",
+    "price": 33.0,
+    "categoryId": 2,
+    "image": "/images/Conference-Chair.png",
+    "isNew": false,
+    "isSale": true
+  },
+  {
+    "id": 4,
+    "name": "Desk Combination",
+    "price": 450.0,
+    "categoryId": 1,
+    "image": "/images/Desk-Combination.png",
+    "isNew": false,
+    "isSale": true
+  },
+  {
+    "id": 5,
+    "name": "Office Chair",
+    "price": 70.0,
+    "categoryId": 2,
+    "image": "/images/Office-Chair.png",
+    "isNew": false,
+    "isSale": false
+  },
+  {
+    "id": 6,
+    "name": "Drawer Block",
+    "price": 25.0,
+    "categoryId": 4,
+    "image": "/images/Drawer-Block.png",
+    "isNew": false,
+    "isSale": false
+  },
+  {
+    "id": 7,
+    "name": "Acoustic Block Screens",
+    "price": 295.0,
+    "categoryId": 9,
+    "image": "/images/Acoustic-Block-Screens.png",
+    "isNew": false,
+    "isSale": false
+  },
+  {
+    "id": 8,
+    "name": "Corner Desk Left Sit",
+    "price": 85.0,
+    "categoryId": 1,
+    "image": "/images/Corner-Desk-Left-Sit.png",
+    "isNew": false,
+    "isSale": false
+  }
+]

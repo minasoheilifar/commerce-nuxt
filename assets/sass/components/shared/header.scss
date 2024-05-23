@@ -1,0 +1,12 @@
+.header-container {
+  @include flexBox(space-between, center, row);
+  width: 100%;
+  margin-bottom: 24px;
+
+  .rightSide {
+    @include flexBox(flex-start, stretch, row);
+    gap: 16px;
+  }
+}
+
+

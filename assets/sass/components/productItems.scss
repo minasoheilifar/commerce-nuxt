@@ -1,0 +1,52 @@
+.items {
+  @include flexBox(flex-start, stretch, column);
+  width: 100%;
+  gap: 8px;
+
+  .imageBox {
+    position: relative;
+    overflow: hidden;
+    
+    .isBadge {
+      @include flexBox(center, center, row);
+      position: absolute;
+      top: 8px;
+      left: -35px;
+      width: 140px;
+      height: 35px;
+      rotate: -40deg;
+      color: #fff;
+    }
+
+    .isNew {
+      background-color: var(--color-primary);
+    }
+
+    .isSale {
+      background-color: var(--bs-green);
+    }
+
+    .images {
+      width: 100%;
+      border-radius: 6px;
+      background-color: var(--el-color-info-light-9) !important;
+      &:hover {
+        border: 1px #e8e8e8 solid;
+        box-shadow: 1px 1px 4px 0px rgb(193, 213, 238);
+      }
+    }
+  }
+
+  .names {
+    color: var(--color-primary);
+  }
+  
+  .priceSection{
+    @include flexBox(space-between,center,row);
+    margin-bottom: 32px;
+
+    .prices {
+      color: #000;
+    }
+  }
+}

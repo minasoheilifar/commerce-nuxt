@@ -1,0 +1,11 @@
+.priceRange-container {
+  width: 100%;
+  margin-top: 16px;
+
+  .range {
+    @include flexBox(space-between, center, row);
+    margin-bottom: 6px;
+    font-size: 13px;
+    color: #8f8e8e;
+  }
+}

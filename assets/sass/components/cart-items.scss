@@ -1,0 +1,29 @@
+.cartItemsSection {
+  border-radius: 12px;
+  padding: 16px;
+  background-color: var(--el-color-info-light-9);
+
+  .el-button {
+    &:hover {
+      border: 1px #e8e8e8 solid;
+      box-shadow: 1px 1px 4px 0px rgb(193, 213, 238) !important;
+    }
+    &.is-round {
+        padding: 8px !important;
+    }
+  }
+  .cartItem {
+    @include flexBox(space-between, center, row);
+    margin-bottom: 16px;
+
+    .cartImage{
+        width: 80px;
+        border-radius: 12px !important;
+        background-color: var(--el-color-info-light-9) !important;
+    }
+  }
+}
+.cartItemsDown{
+  position: fixed;
+  bottom: 10px;
+}

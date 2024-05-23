@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "Desks" },
+  { "id": 2, "name": "Furniture" },
+  { "id": 3, "name": "Boxes" },
+  { "id": 4, "name": "Drawers" },
+  { "id": 5, "name": "Cabinets" },
+  { "id": 6, "name": "Bins" },
+  { "id": 7, "name": "Lamps" },
+  { "id": 8, "name": "Services" },
+  { "id": 9, "name": "Multimedia" }
+]

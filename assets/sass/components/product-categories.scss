@@ -1,0 +1,10 @@
+.categories-container {
+  .section {
+    @include flexBox(center, start, column);
+
+    .items {
+      @include flexBox(flex-start, stretch, column);
+    }
+    
+  }
+}
