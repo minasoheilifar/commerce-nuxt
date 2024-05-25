@@ -1,15 +1,18 @@
 import { defineStore } from "pinia";
 import type { IProducts } from "~/typescript/interfaces";
-import type { ICartItems } from "~/typescript/app";
+import type { ICartItems, ICarts } from "~/typescript/app";
 
 export const useAppStore = defineStore("app", {
   state: () => ({
     carts: {
       items: [] as ICartItems[],
-      discount: {},
+      discountPercent: 0 as number ,
     },
   }),
   getters: {
+    discountPercent():ICarts[]{
+      return this.discountPercent;
+    },
     cartItems: (state) => state.carts.items,
     cartTotal: (state) =>
       state.carts.items.reduce(

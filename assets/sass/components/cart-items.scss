@@ -1,29 +1,85 @@
-.cartItemsSection {
-  border-radius: 12px;
-  padding: 16px;
-  background-color: var(--el-color-info-light-9);
+.cartItemsTop {
+  height: 100vh;
+  // padding: 8px;
 
-  .el-button {
-    &:hover {
-      border: 1px #e8e8e8 solid;
-      box-shadow: 1px 1px 4px 0px rgb(193, 213, 238) !important;
+  .cartItemsSection {
+    height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 230px;
+
+    &::-webkit-scrollbar {
+      display: none !important;
     }
-    &.is-round {
+
+    .el-button {
+      &:hover {
+        border: 1px #e8e8e8 solid;
+        box-shadow: 1px 1px 4px 0px rgb(193, 213, 238) !important;
+      }
+      &.is-round {
         padding: 8px !important;
+      }
     }
-  }
-  .cartItem {
-    @include flexBox(space-between, center, row);
-    margin-bottom: 16px;
+    .cartItem {
+      @include flexBox(space-between, center, row);
+      background-color: var(--el-color-info-light-9);
+      padding: 8px;
+      border-radius: 12px;
+      margin-bottom: 16px;
 
-    .cartImage{
-        width: 80px;
-        border-radius: 12px !important;
-        background-color: var(--el-color-info-light-9) !important;
+      .cartSection {
+        @include flexBox(space-between, center, row);
+        width: 100%;
+
+        .priceSection {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          gap: 8px;
+        }
+
+        .cartImage {
+          width: 80px;
+          border-radius: 12px !important;
+          background-color: var(--el-color-info-light-9) !important;
+          margin-right: 8px;
+        }
+      }
     }
   }
 }
-.cartItemsDown{
+.cartItemsDown {
   position: fixed;
-  bottom: 10px;
+  bottom: 0px;
+  background-color: #fff;
+  width: 100%;
+  // margin-left: -10px;
+
+  .cartDownSection {
+    background-color: var(--el-color-info-light-9) !important;
+    padding: 16px 10px;
+    border: 1px #e8e8e8 solid;
+    box-shadow: 1px 1px 4px 0px rgb(193, 213, 238) !important;
+
+    .orderBtn>span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 200px !important;
+    }
+
+    .discountInput {
+      background-color: #fff !important;
+      border-radius: 12px !important;
+      padding: 0;
+      max-width: 130px;
+      border: 1px #e8e8e8 solid;
+      margin-right: 8px;
+    }
+    
+    .el-input .el-input__wrapper {
+      background-color: #fff !important;
+    }
+  }
 }
