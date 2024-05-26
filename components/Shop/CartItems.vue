@@ -41,39 +41,55 @@
     </div>
 
     <div class="cartItemsDown">
-      <div class="cartDownSection row">
-        <div class="d-flex flex-row align-items-center p-0 mb-3">
+      <div class="cartDownSection">
+        <div class="p-0 mb-3">
           <el-input
             type="number"
-            v-model.number="discountPercent"
+            v-model.number="carts.discountPercent"
             min="0"
             class="discountInput"
-            placeholder="Discount"
           >
-            <template #append>%</template>
+            <template #prefix>
+              <span>Discount %</span>
+            </template>
+            <template #suffix>
+              <span class="ms-2" v-if="carts.discountPercent">
+                Discount Amount:
+                {{ formatPrice(cartTotal - cartTotalAfterDiscount) }} $
+              </span>
+            </template>
           </el-input>
-          <el-button class="active" @click="updateDiscount()">Update</el-button>
-          <div class="ms-2" v-if="discountShow">
-            Discount: {{ formatPrice(cartTotal - cartTotalAfterDiscount) }} $
-          </div>
         </div>
 
-        <div class="row">
-          <el-button @click="clearAllCart()" class="active">
-            <el-icon><Delete /></el-icon>
+        <div>
+          <el-button
+            @click="clearAllCart()"
+            class="active"
+            style="width: 42px !important; height: 42px !important"
+          >
+            <span class="">
+              <el-icon><Delete /></el-icon>
+            </span>
           </el-button>
-          <el-button class="active orderBtn">
-            <div class="d-flex flex-row align-items-center">
+          <el-button
+            class="active orderBtn"
+            style="width: 87% !important; height: 42px !important"
+          >
+            <span class="d-flex flex-row align-items-center">
               <el-icon><List /></el-icon>
               <span class="ms-2">Order</span>
+            </span>
+            <div>
+              <span
+                class="text-decoration me-3"
+                v-if="cartTotal - cartTotalAfterDiscount !== 0"
+              >
+                {{ formatPrice(cartTotal) }} $
+              </span>
+              <span>
+                {{ formatPrice(cartTotalAfterDiscount) }} $
+              </span>
             </div>
-            <div
-              class="text-decoration"
-              v-if="cartTotal - cartTotalAfterDiscount !== 0"
-            >
-              {{ formatPrice(cartTotal) }} $
-            </div>
-            <div>{{ formatPrice(cartTotalAfterDiscount) }} $</div>
           </el-button>
         </div>
       </div>
@@ -88,7 +104,7 @@
 import { Delete, Plus, Minus, List } from "@element-plus/icons-vue";
 
 import { useAppStore } from "~/stores/app";
-const { cartTotal, cartItems, cartTotalAfterDiscount } = storeToRefs(
+const { cartTotal, cartItems, cartTotalAfterDiscount, carts } = storeToRefs(
   useAppStore()
 );
 const { removeFromCart, addToCart, clearAllCart, setDiscountPercent } =
@@ -96,19 +112,6 @@ const { removeFromCart, addToCart, clearAllCart, setDiscountPercent } =
 
 function formatPrice(value: number) {
   return Number(value.toFixed(3));
-}
-const discountShow = ref(false);
-
-const discountPercent = ref<number>(0);
-watch(discountPercent, (newValue) => {
-  if (newValue < 0) {
-    discountPercent.value = 0;
-  }
-});
-
-function updateDiscount() {
-  discountShow.value = true;
-  setDiscountPercent(discountPercent.value);
 }
 </script>
 
