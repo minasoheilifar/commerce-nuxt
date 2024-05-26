@@ -6,19 +6,24 @@ export const useAppStore = defineStore("app", {
   state: () => ({
     carts: {
       items: [] as ICartItems[],
-      discountPercent: 0 as number ,
+      discountPercent: 0 as number,
     },
   }),
   getters: {
-    discountPercent():ICarts[]{
-      return this.discountPercent;
-    },
     cartItems: (state) => state.carts.items,
     cartTotal: (state) =>
       state.carts.items.reduce(
         (total, product) => total + product.price * product.quantity,
         0
       ),
+    cartTotalAfterDiscount: (state) => {
+      const total = state.carts.items.reduce(
+        (total, product) => total + product.price * product.quantity,
+        0
+      );
+      const discount = (total * state.carts.discountPercent) / 100;
+      return total - discount;
+    },
   },
   actions: {
     addToCart(product: IProducts) {
@@ -31,28 +36,68 @@ export const useAppStore = defineStore("app", {
         this.carts.items.push({ ...product, quantity: 1 });
       }
     },
-    removeFromCart(product: IProducts) {
+    // removeFromCart(product: IProducts) {
+    //   const existingProductIndex = this.carts.items.findIndex(
+    //     (item) => item.id === product.id
+    //   );
+
+    //   if (existingProductIndex !== -1) {
+    //     const existingProduct = this.carts.items[existingProductIndex];
+
+    //     if (existingProduct.quantity > 1) {
+    //       this.carts.items[existingProductIndex] = {
+    //         ...existingProduct,
+    //         quantity: existingProduct.quantity - 1,
+    //       };
+    //     } else {
+    //       this.carts.items = this.carts.items.filter(
+    //         (item) => item.id !== product.id
+    //       );
+    //     }
+    //   }
+    // },
+    async removeFromCart(product: IProducts) {
       const existingProductIndex = this.carts.items.findIndex(
         (item) => item.id === product.id
       );
-    
+
       if (existingProductIndex !== -1) {
         const existingProduct = this.carts.items[existingProductIndex];
-    
+
         if (existingProduct.quantity > 1) {
           this.carts.items[existingProductIndex] = {
             ...existingProduct,
             quantity: existingProduct.quantity - 1,
           };
         } else {
-          this.carts.items = this.carts.items.filter(
-            (item) => item.id !== product.id
-          );
+          try {
+            const confirmed = confirm(
+              "Are you sure you want to delete this product?"
+            );
+            if (!confirmed) return;
+
+            this.carts.items = this.carts.items.filter(
+              (item) => item.id !== product.id
+            );
+          } catch (error) {
+            console.error("Error removing product from cart:", error);
+          }
         }
       }
-    },    
-    clearAllCart() {
-      this.carts.items = [];
+    },
+    async clearAllCart() {
+      try {
+        const confirmed = confirm(
+          "Are you sure you want to clear all cart?"
+        );
+        if (!confirmed) return;
+        this.carts.items = [];
+      } catch (error) {
+        console.error("Error removing product from cart:", error);
+      }
+    },
+    setDiscountPercent(discountPercent: number) {
+      this.carts.discountPercent = discountPercent;
     },
   },
 });

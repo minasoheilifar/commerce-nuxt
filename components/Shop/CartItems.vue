@@ -44,27 +44,36 @@
       <div class="cartDownSection row">
         <div class="d-flex flex-row align-items-center p-0 mb-3">
           <el-input
+            type="number"
+            v-model.number="discountPercent"
+            min="0"
             class="discountInput"
-            v-model="input2"
             placeholder="Discount"
           >
             <template #append>%</template>
           </el-input>
-          <el-button class="active">Update</el-button>
+          <el-button class="active" @click="updateDiscount()">Update</el-button>
+          <div class="ms-2" v-if="discountShow">
+            Discount: {{ formatPrice(cartTotal - cartTotalAfterDiscount) }} $
+          </div>
         </div>
 
         <div class="row">
           <el-button @click="clearAllCart()" class="active">
             <el-icon><Delete /></el-icon>
           </el-button>
-          <el-button class="active orderBtn" >
+          <el-button class="active orderBtn">
             <div class="d-flex flex-row align-items-center">
               <el-icon><List /></el-icon>
               <span class="ms-2">Order</span>
             </div>
-            <div>
+            <div
+              class="text-decoration"
+              v-if="cartTotal - cartTotalAfterDiscount !== 0"
+            >
               {{ formatPrice(cartTotal) }} $
             </div>
+            <div>{{ formatPrice(cartTotalAfterDiscount) }} $</div>
           </el-button>
         </div>
       </div>
@@ -79,14 +88,28 @@
 import { Delete, Plus, Minus, List } from "@element-plus/icons-vue";
 
 import { useAppStore } from "~/stores/app";
-const { cartTotal, cartItems } = storeToRefs(useAppStore());
-const { removeFromCart, addToCart, clearAllCart } = useAppStore();
+const { cartTotal, cartItems, cartTotalAfterDiscount } = storeToRefs(
+  useAppStore()
+);
+const { removeFromCart, addToCart, clearAllCart, setDiscountPercent } =
+  useAppStore();
 
 function formatPrice(value: number) {
   return Number(value.toFixed(3));
 }
-const input2 = ref('')
+const discountShow = ref(false);
 
+const discountPercent = ref<number>(0);
+watch(discountPercent, (newValue) => {
+  if (newValue < 0) {
+    discountPercent.value = 0;
+  }
+});
+
+function updateDiscount() {
+  discountShow.value = true;
+  setDiscountPercent(discountPercent.value);
+}
 </script>
 
 <style lang="scss">
