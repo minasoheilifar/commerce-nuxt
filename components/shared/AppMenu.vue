@@ -2,7 +2,7 @@
   <div class="menu-container">
     <ul class="items">
       <li v-for="item in Menu" :key="item.href">
-        <NuxtLink :to="item.href" class="my-link">{{ item.name }}</NuxtLink>
+        <NuxtLink :to="item.href">{{ item.name }}</NuxtLink>
       </li>
     </ul>
   </div>
@@ -14,9 +14,9 @@ const route=useRoute();
 
 const Menu = ref<IMenu[]>([
   { name: "Home", href: "/" },
-  { name: "Shop", href: "/Shop" },
-  { name: "Blog", href: "/Blog" },
-  { name: "Contact us", href: "/ContactUs" },
+  { name: "Shop", href: "/shop" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact us", href: "/contactUs" },
 ])
 </script>
 

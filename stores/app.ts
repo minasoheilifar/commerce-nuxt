@@ -4,48 +4,48 @@ import type { ICartItems, ICarts } from "~/typescript/app";
 
 export const useAppStore = defineStore("app", {
   state: () => ({
-    carts: {
+    cart: {
       items: [] as ICartItems[],
       discountPercent: 0 as number,
     },
   }),
   getters: {
-    cartItems: (state) => state.carts.items,
+    cartItems: (state) => state.cart.items,
     cartTotal: (state) =>
-      state.carts.items.reduce(
+      state.cart.items.reduce(
         (total, product) => total + product.price * product.quantity,
         0
       ),
     cartTotalAfterDiscount: (state) => {
-      const total = state.carts.items.reduce(
+      const total = state.cart.items.reduce(
         (total, product) => total + product.price * product.quantity,
         0
       );
-      const discount = (total * state.carts.discountPercent) / 100;
+      const discount = (total * state.cart.discountPercent) / 100;
       return total - discount;
     },
   },
   actions: {
     addToCart(product: IProducts) {
-      const existingProduct = this.carts.items.find(
+      const existingProduct = this.cart.items.find(
         (item) => item.id === product.id
       );
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {
-        this.carts.items.push({ ...product, quantity: 1 });
+        this.cart.items.push({ ...product, quantity: 1 });
       }
     },
     async removeFromCart(product: IProducts) {
-      const existingProductIndex = this.carts.items.findIndex(
+      const existingProductIndex = this.cart.items.findIndex(
         (item) => item.id === product.id
       );
 
       if (existingProductIndex !== -1) {
-        const existingProduct = this.carts.items[existingProductIndex];
+        const existingProduct = this.cart.items[existingProductIndex];
 
         if (existingProduct.quantity > 1) {
-          this.carts.items[existingProductIndex] = {
+          this.cart.items[existingProductIndex] = {
             ...existingProduct,
             quantity: existingProduct.quantity - 1,
           };
@@ -61,7 +61,7 @@ export const useAppStore = defineStore("app", {
               }
             )
 
-            this.carts.items = this.carts.items.filter(
+            this.cart.items = this.cart.items.filter(
               (item) => item.id !== product.id
             );
           } catch (error) {
@@ -81,13 +81,13 @@ export const useAppStore = defineStore("app", {
             type: 'warning',
           }
         )
-        this.carts.items = [];
+        this.cart.items = [];
       } catch (error) {
         console.error("Error removing product from cart:", error);
       }
     },
     setDiscountPercent(discountPercent: number) {
-      this.carts.discountPercent = discountPercent;
+      this.cart.discountPercent = discountPercent;
     },
   },
 });

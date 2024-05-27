@@ -45,7 +45,7 @@
         <div class="p-0 mb-3">
           <el-input
             type="number"
-            v-model.number="carts.discountPercent"
+            v-model.number="cart.discountPercent"
             min="0"
             class="discountInput"
           >
@@ -53,7 +53,7 @@
               <span>Discount %</span>
             </template>
             <template #suffix>
-              <span class="ms-2" v-if="carts.discountPercent">
+              <span class="ms-2" v-if="cart.discountPercent">
                 Discount Amount:
                 {{ formatPrice(cartTotal - cartTotalAfterDiscount) }} $
               </span>
@@ -104,7 +104,7 @@
 import { Delete, Plus, Minus, List } from "@element-plus/icons-vue";
 
 import { useAppStore } from "~/stores/app";
-const { cartTotal, cartItems, cartTotalAfterDiscount, carts } = storeToRefs(
+const { cartTotal, cartItems, cartTotalAfterDiscount, cart } = storeToRefs(
   useAppStore()
 );
 const { removeFromCart, addToCart, clearAllCart, setDiscountPercent } =

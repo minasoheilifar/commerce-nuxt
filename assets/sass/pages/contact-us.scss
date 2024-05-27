@@ -1,0 +1,32 @@
+// .contactUs-container-page {
+//     @include flexBox(flex-start, stretch, row);
+//     gap: 24px;
+//     height: 100vh;
+
+// }
+.formBox{
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 6px;
+    border: 1px #e8e8e8 solid;
+    box-shadow: 0 4px 8px rgba(9, 72, 153, .1)!important;
+    -webkit-box-shadow: 0 4px 8px rgba(9, 72, 153, .1)!important;
+    -moz-box-shadow: 0 4px 8px rgba(9, 72, 153, .1)!important;
+}
+.contactUsImageBox {
+    width: 360px !important;
+
+
+    .contactUsImage{
+        width: 100%; 
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(9, 72, 153, .1)!important;
+        -webkit-box-shadow: 0 4px 8px rgba(9, 72, 153, .1)!important;
+        -moz-box-shadow: 0 4px 8px rgba(9, 72, 153, .1)!important;
+    }
+}
+.el-form{
+    .el-form-item{
+        display: block;
+    }
+}
