@@ -5,7 +5,10 @@
         <div class="row">
           <div class="col-12">
             <AppHeader />
-            <NuxtPage />
+            <div class="app-main pt-3">
+              <NuxtPage />
+              <CartItems />
+            </div>
           </div>
         </div>
       </div>

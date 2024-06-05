@@ -24,6 +24,7 @@ import { useProductStore } from "~/stores/product";
 const { openAndCloseSideBar } = storeToRefs(useProductStore());
 import { useAppStore } from "~/stores/app";
 const { cartItems } = storeToRefs(useAppStore());
+
 </script>
 
 <style lang="scss">

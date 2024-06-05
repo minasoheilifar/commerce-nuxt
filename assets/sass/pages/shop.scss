@@ -43,42 +43,6 @@
       }
     }
 
-    .sideBar {
-      @include flexBox(flex-start, stretch, column);
-      position: fixed;
-      height: 100vh;
-      width: 30%;
-      padding: 10px;
-      right: -30%;
-      z-index: 50;
-      background-color: #fff;
-      border: 1px #e8e8e8 solid;
-      box-shadow: 1px 1px 4px 0px rgb(193, 213, 238);
-      border-top-left-radius: 6px;
-      transition: right 1s;
 
-      &.show {
-        right: 0;
-      }
-
-      &.hide {
-        right: -30%;
-      }
-
-      .closeSideBar {
-        align-self: self-start;
-      }
-
-      .sideBarItem {
-        width: 100%;
-        // height: 70px;
-        margin-top: 16px;
-
-        p {
-          color: #000;
-          font-weight: 600;
-        }
-      }
-    }
   }
 }

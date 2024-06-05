@@ -1,0 +1,45 @@
+.blog-container-page {
+    height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 230px;
+  
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+  
+    .formBox {
+      justify-content: space-between;
+      background-color: #fff;
+      border-radius: 6px;
+      border: 1px #e8e8e8 solid;
+      box-shadow: 0 4px 8px rgba(9, 72, 153, 0.1) !important;
+      -webkit-box-shadow: 0 4px 8px rgba(9, 72, 153, 0.1) !important;
+      -moz-box-shadow: 0 4px 8px rgba(9, 72, 153, 0.1) !important;
+    }
+    .contactUsImageBox {
+      width: 360px !important;
+      margin: auto;
+  
+      .contactUsImage {
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(9, 72, 153, 0.1) !important;
+        -webkit-box-shadow: 0 4px 8px rgba(9, 72, 153, 0.1) !important;
+        -moz-box-shadow: 0 4px 8px rgba(9, 72, 153, 0.1) !important;
+      }
+    }
+    .el-form {
+      .attachment {
+        line-height: 32px;
+        border-radius: 6px;
+        width: 100%;
+        background-color: var(--el-color-info-light-9) !important;
+        padding: 4px 16px;
+        display: flex;
+      }
+      .el-button {
+        width: 100px !important;
+      }
+    }
+  }
+  

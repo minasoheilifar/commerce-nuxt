@@ -1,114 +1,179 @@
-<!-- <template>
-  <div>page: blog</div>
-  <NuxtLink :to="{ name: 'contactUs' }">go to contact us page</NuxtLink>
-</template>
-
-<script lang="ts" setup></script>
-
-<style scoped></style> -->
-
-
 <template>
-  <el-form
-    ref="ruleFormRef"
-    style="max-width: 600px"
-    :model="ruleForm"
-    status-icon
-    :rules="rules"
-    label-width="auto"
-    class="demo-ruleForm"
-  >
-    <el-form-item label="Password" prop="pass">
-      <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
-    </el-form-item>
-    <el-form-item label="Confirm" prop="checkPass">
-      <el-input
-        v-model="ruleForm.checkPass"
-        type="password"
-        autocomplete="off"
-      />
-    </el-form-item>
-    <el-form-item label="Age" prop="age">
-      <el-input v-model.number="ruleForm.age" />
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm(ruleFormRef)">
-        Submit
-      </el-button>
-      <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="container blog-container-page">
+    <div class="row">
+      <div class="col-12">
+        <div class="row px-md-5 px-4 py-4 formBox">
+          <div class="col-12 col-md-7">
+            <div>
+              <h4>Send tickets to support</h4>
+            </div>
+            <el-form
+              ref="contactUsForm"
+              style="max-width: 600px"
+              :model="formData"
+              status-icon
+              :rules="rules"
+              label-width="auto"
+              class="demo-formData"
+              label-position="left"
+              size="large"
+              :disabled="postingForm"
+              @submit.prevent="postForm"
+            >
+              <div class="row my-md-4">
+                <div class="col-12 col-lg-6">
+                  <el-form-item label="Name and Surname" prop="name">
+                    <el-input v-model="formData.name" :prefix-icon="User" />
+                  </el-form-item>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <el-form-item label="Email" prop="email">
+                    <el-input v-model="formData.email" :prefix-icon="Message" />
+                  </el-form-item>
+                </div>
+                <div class="col-12">
+                  <el-form-item label="Subject" prop="subject">
+                    <el-select
+                      v-model="formData.subject"
+                      placeholder="Please select the subject"
+                    >
+                      <template #prefix>
+                        <el-icon><EditPen /></el-icon>
+                      </template>
+                      <el-option
+                        label="Passport correction"
+                        value="Passport correction"
+                      />
+                      <el-option
+                        label="Booking revalidation"
+                        value="Booking revalidation"
+                      />
+                      <el-option label="Ok to board" value="Ok to board" />
+                      <el-option
+                        label="travel requirement"
+                        value="travel requirement"
+                      />
+                      <el-option label="Baggage" value="Baggage" />
+                      <el-option
+                        label="Hotel booking cancellation"
+                        value="Hotel booking cancellation"
+                      />
+                      <el-option
+                        label="Hotel booking amendment"
+                        value="Hotel booking amendment"
+                      />
+                      <el-option label="Other" value="Other" />
+                    </el-select>
+                  </el-form-item>
+                </div>
+                <div class="col-12">
+                  <el-form-item label="Description" prop="description">
+                    <el-input
+                      v-model="formData.description"
+                      type="textarea"
+                      placeholder="Write your description"
+                    />
+                  </el-form-item>
+                </div>
+                <div class="col-12">
+                  <el-form-item label="Attachment" prop="attachment">
+                    <input type="file" ref="attachment" class="attachment" />
+                  </el-form-item>
+                </div>
+                <div class="col-12">
+                  <el-form-item>
+                    <el-button
+                      native-type="submit"
+                      :loading="postingForm"
+                      class="active"
+                      >Submit</el-button
+                    >
+                  </el-form-item>
+                </div>
+              </div>
+            </el-form>
+          </div>
+
+          <div class="col-12 col-md-5 contactUsImageBox">
+            <img src="/images/contactUs.png" alt="" class="contactUsImage" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
-
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import type { FormInstance, FormRules } from 'element-plus'
+import { Message, User, EditPen } from "@element-plus/icons-vue";
+import { useAppStore } from "~/stores/app";
+const { postContactUsForm } = useAppStore();
+import type { FormInstance, FormRules } from "element-plus";
+//////////////////don refs
+const attachment = ref<HTMLElement>();
+/////////////////state
+const formData = reactive({
+  name: "",
+  email: "",
+  subject: "",
+  description: "",
+});
+const postingForm = ref(false);
+/////////////////form validation
+const contactUsForm = ref<FormInstance>();
+const validationForm = () => contactUsForm.value?.validate();
+const rules = reactive<FormRules<typeof formData>>({
+  name: [
+    {
+      required: true,
+      message: "esmo benevis honey",
+      trigger: "change",
+    },
+    {
+      min: 4,
+      message: "kame honey",
+      trigger: "change",
+    },
+    {
+      max: 15,
+      message: "ziyade honey",
+      trigger: "change",
+    },
+  ],
+  email: [
+    { required: true, message: "dorost nist", trigger: "change" },
+    { type: "email", message: "type email dorost nist", trigger: "change" },
+  ],
+  subject: [{ required: true, trigger: "change" }],
+  description: [
+    { required: true, trigger: "change" },
+    { min: 10, message: "hadeaghal 10 tas", trigger: "change" },
+    { max: 20, message: "hadeaksar 20 tas", trigger: "change" },
+  ],
+});
+///////////////methods
+const postForm = async () => {
+  postingForm.value = true;
+  try {
+    await validationForm();
+    const payload = new FormData();
+    payload.append("name", formData.name);
+    payload.append("email", formData.email);
+    payload.append("subject", formData.subject);
+    payload.append("description", formData.description);
+    if (attachment?.value?.files?.[0])
+      payload.append("attachment", attachment.value.files[0]);
+    ///call api
+    const response = await postContactUsForm(payload);
+    ElMessageBox.alert(response.data, "successfully");
+    contactUsForm.value?.resetFields();
 
-const ruleFormRef = ref<FormInstance>()
-
-const checkAge = (rule: any, value: any, callback: any) => {
-  if (!value) {
-    return callback(new Error('Please input the age'))
+    attachment.value.value = null;
+  } catch (error) {
+    console.log("~ error:", error);
   }
-  setTimeout(() => {
-    if (!Number.isInteger(value)) {
-      callback(new Error('Please input digits'))
-    } else {
-      if (value < 18) {
-        callback(new Error('Age must be greater than 18'))
-      } else {
-        callback()
-      }
-    }
-  }, 1000)
-}
-
-const validatePass = (rule: any, value: any, callback: any) => {
-  if (value === '') {
-    callback(new Error('Please input the password'))
-  } else {
-    if (ruleForm.checkPass !== '') {
-      if (!ruleFormRef.value) return
-      ruleFormRef.value.validateField('checkPass')
-    }
-    callback()
-  }
-}
-const validatePass2 = (rule: any, value: any, callback: any) => {
-  if (value === '') {
-    callback(new Error('Please input the password again'))
-  } else if (value !== ruleForm.pass) {
-    callback(new Error("Two inputs don't match!"))
-  } else {
-    callback()
-  }
-}
-
-const ruleForm = reactive({
-  pass: '',
-  checkPass: '',
-  age: '',
-})
-
-const rules = reactive<FormRules<typeof ruleForm>>({
-  pass: [{ validator: validatePass, trigger: 'blur' }],
-  checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-  age: [{ validator: checkAge, trigger: 'blur' }],
-})
-
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!')
-    }
-  })
-}
-
-const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.resetFields()
-}
+  postingForm.value = false;
+};
 </script>
+
+<style lang="scss">
+@import "~/assets/sass/pages/blog.scss";
+</style>

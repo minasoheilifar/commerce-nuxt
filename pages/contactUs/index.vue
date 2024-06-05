@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-3">
+  <div class="container contactUs-container-page">
     <div class="row">
       <div class="col-12">
         <div class="row px-md-5 px-4 py-4 formBox">
@@ -8,37 +8,37 @@
               <h4>Send tickets to support</h4>
             </div>
             <el-form
-              ref="ruleFormRef"
+              ref="contactUsForm"
               style="max-width: 600px"
-              :model="ruleForm"
+              :model="formData"
               status-icon
               :rules="rules"
               label-width="auto"
-              class="demo-ruleForm"
+              class="demo-formData"
               label-position="left"
               size="large"
+              :disabled="postingForm"
+              @submit.prevent="postForm"
             >
               <div class="row my-4">
                 <div class="col-12 col-lg-6">
-                  <el-form-item label="Name and Surname" prop="name" required>
-                    <el-input v-model="ruleForm.name" :prefix-icon="User" />
+                  <el-form-item label="Name and Surname" prop="name">
+                    <el-input v-model="formData.name" :prefix-icon="User" />
                   </el-form-item>
                 </div>
                 <div class="col-12 col-lg-6">
-                  <el-form-item label="Email" prop="email" required>
-                    <el-input v-model="ruleForm.email" :prefix-icon="Message" />
+                  <el-form-item label="Email" prop="email">
+                    <el-input v-model="formData.email" :prefix-icon="Message" />
                   </el-form-item>
                 </div>
                 <div class="col-12">
-                  <el-form-item label="Subject" prop="subject" required>
+                  <el-form-item label="Subject" prop="subject">
                     <el-select
-                      v-model="ruleForm.subject"
+                      v-model="formData.subject"
                       placeholder="Please select the subject"
                     >
                       <template #prefix>
-                        <span
-                          ><el-icon><EditPen /></el-icon
-                        ></span>
+                        <el-icon><EditPen /></el-icon>
                       </template>
                       <el-option
                         label="Passport correction"
@@ -67,18 +67,26 @@
                   </el-form-item>
                 </div>
                 <div class="col-12">
-                  <el-form-item label="Description" prop="desc" required>
+                  <el-form-item label="Description" prop="description">
                     <el-input
-                      v-model="ruleForm.desc"
+                      v-model="formData.description"
                       type="textarea"
                       placeholder="Write your description"
                     />
                   </el-form-item>
                 </div>
-                <div class="col-12"></div>
+                <div class="col-12">
+                  <el-form-item label="Attachment" prop="attachment">
+                    <input type="file" ref="attachment" class="attachment"/>
+                  </el-form-item>
+                </div>
                 <div class="col-12">
                   <el-form-item>
-                    <el-button type="primary" @click="submitForm(ruleFormRef)">
+                    <el-button
+                      native-type="submit"
+                      :loading="postingForm"
+                      class="active"
+                    >
                       Submit
                     </el-button>
                   </el-form-item>
@@ -86,8 +94,7 @@
               </div>
             </el-form>
           </div>
-          <div
-            class="col-12 col-md-5 d-flex align-items-md-center justify-content-center contactUsImageBox"
+          <div class="col-12 col-md-5 contactUsImageBox"
           >
             <img src="/images/contactUs.png" class="contactUsImage" alt="" />
           </div>
@@ -98,6 +105,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useAppStore } from "~/stores/app";
+const { postContactUsForm } = useAppStore();
+
 import type {
   ComponentSize,
   FormProps,
@@ -106,79 +116,78 @@ import type {
 } from "element-plus";
 import { User, Message, EditPen } from "@element-plus/icons-vue";
 
-const ruleFormRef = ref<FormInstance>();
-/////////////
-const validateName = (rule: any, value: any, callback: any) => {
-  if (value === "") {
-    callback(new Error("Please input Name and Surname"));
-  } else {
-    if (ruleForm.name !== "") {
-      if (!ruleFormRef.value) return;
-      ruleFormRef.value.validateField("name");
-    }
-    callback();
-  }
-};
-const validateEmail = (rule: any, value: any, callback: any) => {
-  if (value === "") {
-    callback(new Error("Please input Email address"));
-  } else {
-    if (ruleForm.email !== "") {
-      if (!ruleFormRef.value) return;
-      ruleFormRef.value.validateField("email");
-    }
-    callback();
-  }
-};
-const checkSubject = (rule: any, value: any, callback: any) => {
-  if (value === "") {
-    callback(new Error("Please choose the ticket Subject"));
-  } else {
-    if (ruleForm.subject !== "") {
-      if (!ruleFormRef.value) return;
-      ruleFormRef.value.validateField("subject");
-    }
-    callback();
-  }
-};
-const validateDesc = (rule: any, value: any, callback: any) => {
-  if (value === "") {
-    callback(new Error("Please input Description"));
-  } else if (value.length < 30) {
-    callback(new Error("Please input at least 30 characters"));
-  } else {
-    if (ruleForm.desc !== "") {
-      if (!ruleFormRef.value) return;
-      ruleFormRef.value.validateField("desc");
-    }
-    callback();
-  }
-};
-//////
-const ruleForm = reactive({
+/////////////////////////////////////////////////////dom refs
+const attachment = ref<HTMLElement>();
+console.log("🚀 ~ attachment:", attachment.value)
+/////////////////////////////////////////////////////state
+const formData = reactive({
   name: "",
   email: "",
   subject: "",
-  desc: "",
-  attachment: "",
+  description: "",
 });
-
-const rules = reactive<FormRules<typeof ruleForm>>({
-  name: [{ validator: validateName, trigger: "blur" }],
-  email: [{ validator: validateEmail, trigger: "blur" }],
-  subject: [{ validator: checkSubject, trigger: "blur" }],
-  desc: [{ validator: validateDesc, trigger: "blur" }],
+const postingForm = ref(false);
+//////////////////////////////////////////////////////form validation
+const contactUsForm = ref<FormInstance>();
+const validateForm = () => contactUsForm.value?.validate();
+const rules = reactive<FormRules<typeof formData>>({
+  name: [
+    {
+      required: true,
+      message: "Please input Name and Surname",
+      trigger: "change",
+    },
+    { min: 4, message: "Please input at min 4 characters", trigger: "change" },
+    {
+      max: 15,
+      message: "Please input at max 15 characters",
+      trigger: "change",
+    },
+  ],
+  email: [
+    { required: true, message: "Please input Email address", trigger: "change" },
+    {
+      type: "email",
+      message: "Please input valid Email address",
+      trigger: "change",
+    },
+  ],
+  subject: [{ required: true, trigger: "change" }],
+  description: [
+    { required: true, trigger: "change" },
+    {
+      min: 20,
+      message: "Please input at min 20 characters",
+      trigger: "change",
+    },
+    {
+      max: 200,
+      message: "Please input at max 200 characters",
+      trigger: "change",
+    },
+  ],
 });
-
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  formEl.validate((valid) => {
-    if (valid) {
-      console.log("submit!");
-    } else {
-      console.log("error submit!");
-    }
-  });
+/////////////////////////////////////////////////////methods
+const postForm = async () => {
+  postingForm.value = true;
+  try {
+    await validateForm();
+    const payload = new FormData();
+    payload.append("name", formData.name);
+    payload.append("email", formData.email);
+    payload.append("subject", formData.subject);
+    payload.append("description", formData.description);
+    if (attachment?.value?.files?.[0])
+      payload.append("attachment", attachment.value.files[0]);
+    //call api
+    const response = await postContactUsForm(payload);
+    ElMessageBox.alert(response.data, "success");
+    contactUsForm.value?.resetFields();
+    attachment.value.value = null;
+  } catch (error) {
+    console.log("🚀 ~ postForm ~ error:", error);
+  }
+  postingForm.value = false;
 };
 </script>
 

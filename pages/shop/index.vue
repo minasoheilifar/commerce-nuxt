@@ -6,15 +6,6 @@
     </div>
 
     <div class="rightSide">
-      <div :class="['sideBar', showSideBar ? 'show' : 'hide']">
-        <div class="closeSideBar" @click="openAndCloseSideBar()">
-          <el-icon><CloseBold /></el-icon>
-        </div>
-        <div class="sideBarItem">
-          <CartItems />
-        </div>
-      </div>
-
       <AppSearchbar />
       <!-- ///////Products -->
       <div class="products-container">
@@ -38,9 +29,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { CloseBold } from "@element-plus/icons-vue";
 import { useProductStore } from "~/stores/product";
-const { showSideBar, openAndCloseSideBar } = storeToRefs(useProductStore());
 import type { IProducts } from "~/typescript/interfaces";
 import { SORT_VARIANTS } from "~/typescript/types";
 const {

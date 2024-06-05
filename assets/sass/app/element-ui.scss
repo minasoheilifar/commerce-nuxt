@@ -205,7 +205,7 @@
 
 .el-select {
   border: none !important;
-  margin-left: 4px;
+  margin-left: 0px;
 
   &:hover {
     border: none !important;
@@ -275,6 +275,7 @@
     color: var(--color-primary) !important;
   }
   &.active {
+    padding: 10px 16px !important;
     background-color: var(--color-primary) !important;
     color: #fff;
     &:hover {
@@ -309,6 +310,7 @@
   .el-textarea__inner {
     background-color: var(--el-color-info-light-9) !important;
     padding: 10px 15px;
+    height: 75px;
   }
 }
 
@@ -443,12 +445,12 @@
 //     }
 //   }
 
-  // .el-textarea {
-  //   .el-textarea__inner {
-  //     @include borderRadius($medium-border-radius!important);
-  //     padding: 10px 15px;
-  //   }
-  // }
+// .el-textarea {
+//   .el-textarea__inner {
+//     @include borderRadius($medium-border-radius!important);
+//     padding: 10px 15px;
+//   }
+// }
 
 //   .el-select {
 //     width: 100% !important;
@@ -587,6 +589,9 @@
 //   }
 
 .el-form {
+  .el-form-item {
+    display: block !important;
+  }
   .el-form-item--large .el-form-item__label {
     height: 30px;
     line-height: 40px;

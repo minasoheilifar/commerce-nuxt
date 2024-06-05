@@ -180,10 +180,10 @@
       .app-main {
         display: flex;
         flex-grow: 1;
-        height: 50%;
+        height: 100%;
         border-bottom-left-radius: $layoutCorners;
         overflow: hidden;
-        margin-left: $sidebarWidth;
+        // margin-left: $sidebarWidth;
         background: #fff;
   
         &:dir(rtl) {

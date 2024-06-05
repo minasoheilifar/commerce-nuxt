@@ -26,6 +26,22 @@ export const useAppStore = defineStore("app", {
     },
   },
   actions: {
+    postContactUsForm(payload: FormData) {
+      const { $axios, $config } = useNuxtApp();
+      const baseUrl = useRuntimeConfig().public.BASE_URL;
+      return new Promise((resolve, reject) => {
+        $axios
+          .post(`${baseUrl}/contact-us`, payload)
+
+          .then(({ data }) => {
+            resolve(data);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
     addToCart(product: IProducts) {
       const existingProduct = this.cart.items.find(
         (item) => item.id === product.id
@@ -52,14 +68,14 @@ export const useAppStore = defineStore("app", {
         } else {
           try {
             await ElMessageBox.confirm(
-              'Are you sure you want to delete this product?',
-              'Warning',
+              "Are you sure you want to delete this product?",
+              "Warning",
               {
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
-                type: 'warning',
+                confirmButtonText: "OK",
+                cancelButtonText: "Cancel",
+                type: "warning",
               }
-            )
+            );
 
             this.cart.items = this.cart.items.filter(
               (item) => item.id !== product.id
@@ -73,14 +89,14 @@ export const useAppStore = defineStore("app", {
     async clearAllCart() {
       try {
         await ElMessageBox.confirm(
-          'Are you sure you want to clear all cart?',
-          'Warning',
+          "Are you sure you want to clear all cart?",
+          "Warning",
           {
-            confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
-            type: 'warning',
+            confirmButtonText: "OK",
+            cancelButtonText: "Cancel",
+            type: "warning",
           }
-        )
+        );
         this.cart.items = [];
       } catch (error) {
         console.error("Error removing product from cart:", error);
