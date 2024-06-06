@@ -32,16 +32,12 @@
   }
   .sideBarItem {
     width: 100%;
-    // width: calc(100% - 80px);
     margin-top: 16px;
 
     .cartItemsTop {
-      // height: 100vh;
-      // padding: 8px;
 
       .cartItemsSection {
-        height: calc(100vh - 147px) !important;
-        // height: 100vh;
+        // height: calc(100vh - 147px) !important;
         overflow-y: scroll;
         padding-bottom: 125px;
 
@@ -91,11 +87,10 @@
       }
     }
     .cartItemsDown {
-      position: fixed;
+      position: absolute;
       bottom: 0px;
       background-color: #fff;
-      // width: 30%;
-      width: calc(100% - 73%);
+      width: 100%;
       margin-left: -10px;
 
       .cartDownSection {

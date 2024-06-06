@@ -11,7 +11,7 @@
       --font-family: 'Bahij', 'Roboto', Tahoma, sans-serif;
     }
   }
-  
+
   body {
     margin: 0;
     padding: 0;
@@ -20,6 +20,10 @@
     box-sizing: border-box;
     font-family: var(--font-family);
     overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
   
     &:dir(rtl) {
       direction: rtl;

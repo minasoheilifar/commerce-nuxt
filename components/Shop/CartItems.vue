@@ -42,65 +42,68 @@
                 </el-button>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="cartItemsDown">
-          <div class="cartDownSection">
-            <div class="p-0 mb-3">
-              <el-input
-                type="number"
-                v-model.number="cart.discountPercent"
-                min="0"
-                class="discountInput"
-                style=" height: 40px !important"
-              >
-                <template #prefix>
-                  <span>Discount %</span>
-                </template>
-                <template #suffix>
-                  <span class="ms-2" v-if="cart.discountPercent">
-                    Discount Amount:
-                    {{ formatPrice(cartTotal - cartTotalAfterDiscount) }} $
-                  </span>
-                </template>
-              </el-input>
-            </div>
-
-            <div>
-              <el-button
-                @click="clearAllCart()"
-                class="active"
-                style="width: 40px !important; height: 40px !important"
-              >
-                <span class="">
-                  <el-icon><Delete /></el-icon>
-                </span>
-              </el-button>
-              <el-button
-                class="active orderBtn"
-                style="width: calc(100% - 54px) !important; height: 40px !important"
-              >
-                <span class="d-flex flex-row align-items-center">
-                  <el-icon><List /></el-icon>
-                  <span class="ms-2">Order</span>
-                </span>
-                <div>
-                  <span
-                    class="text-decoration me-3"
-                    v-if="cartTotal - cartTotalAfterDiscount !== 0"
+            <div class="cartItemsDown">
+              <div class="cartDownSection">
+                <div class="p-0 mb-3">
+                  <el-input
+                    type="number"
+                    v-model.number="cart.discountPercent"
+                    min="0"
+                    class="discountInput"
+                    style="height: 40px !important"
                   >
-                    {{ formatPrice(cartTotal) }} $
-                  </span>
-                  <span> {{ formatPrice(cartTotalAfterDiscount) }} $ </span>
+                    <template #prefix>
+                      <span>Discount %</span>
+                    </template>
+                    <template #suffix>
+                      <span class="ms-2" v-if="cart.discountPercent">
+                        Discount Amount:
+                        {{ formatPrice(cartTotal - cartTotalAfterDiscount) }} $
+                      </span>
+                    </template>
+                  </el-input>
                 </div>
-              </el-button>
+
+                <div>
+                  <el-button
+                    @click="clearAllCart()"
+                    class="active"
+                    style="width: 40px !important; height: 40px !important"
+                  >
+                    <span class="">
+                      <el-icon><Delete /></el-icon>
+                    </span>
+                  </el-button>
+                  <el-button
+                    class="active orderBtn"
+                    style="
+                      width: calc(100% - 54px) !important;
+                      height: 40px !important;
+                    "
+                  >
+                    <span class="d-flex flex-row align-items-center">
+                      <el-icon><List /></el-icon>
+                      <span class="ms-2">Order</span>
+                    </span>
+                    <div>
+                      <span
+                        class="text-decoration me-3"
+                        v-if="cartTotal - cartTotalAfterDiscount !== 0"
+                      >
+                        {{ formatPrice(cartTotal) }} $
+                      </span>
+                      <span> {{ formatPrice(cartTotalAfterDiscount) }} $ </span>
+                    </div>
+                  </el-button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div v-else>
-        <p style="text-align: center; font-weight: 200 ">Your cart is empty.</p>
+        <p style="text-align: center; font-weight: 200">Your cart is empty.</p>
       </div>
     </div>
   </div>

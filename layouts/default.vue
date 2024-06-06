@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout mb-5">
     <div class="app-content">
       <div class="container">
         <div class="row">
@@ -14,5 +14,8 @@
       </div>
     </div>
   </div>
+  <AppFooter/>
+
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>

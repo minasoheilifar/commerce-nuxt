@@ -27,13 +27,28 @@ export const useAppStore = defineStore("app", {
   },
   actions: {
     postContactUsForm(payload: FormData) {
-      const { $axios, $config } = useNuxtApp();
+      const { $axios } = useNuxtApp();
       const baseUrl = useRuntimeConfig().public.BASE_URL;
       return new Promise((resolve, reject) => {
         $axios
           .post(`${baseUrl}/contact-us`, payload)
 
           .then(({ data }) => {
+            resolve(data);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
+
+    postNewsLetterForm(payload: {email:string} ) {
+      const { $axios } = useNuxtApp();
+      const baseUrl = useRuntimeConfig().public.BASE_URL;
+      return new Promise((resolve, reject) => {
+        $axios
+          .post(`${baseUrl}/subscribe`, payload)
+          .then(({data}) => {
             resolve(data);
           })
           .catch((error) => {

@@ -32,6 +32,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       BASE_URL:process.env.BASE_URL,
+      BASE_URL_FLIGHT:process.env.BASE_URL_FLIGHT,
     },
   },
 });

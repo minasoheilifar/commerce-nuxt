@@ -2,6 +2,7 @@
   @include flexBox(flex-start, stretch, row);
   gap: 24px;
   height: 100vh;
+  width: 100%;
 
   .leftSide {
     @include flexBox(flex-start, start, column);
