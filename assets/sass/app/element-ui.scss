@@ -61,7 +61,8 @@
   --el-color-white: #ffffff;
   --el-color-black: #000000;
 
-  --el-color-primary: #{$color-primary};
+  // --el-color-primary: #{$color-primary};
+  --el-color-primary: var(--color-primary) !important;
   --el-color-primary-light-3: #{colorPrimaryRGBA(0.7)};
   --el-color-primary-light-5: #{colorPrimaryRGBA(0.6)};
   --el-color-primary-light-7: #{colorPrimaryRGBA(0.3)};
@@ -202,6 +203,10 @@
   }
 }
 ///
+.el-loading-spinner .path {
+  stroke: var(--color-primary) !important;
+}
+/// ///
 
 .el-select {
   border: none !important;

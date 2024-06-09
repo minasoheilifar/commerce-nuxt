@@ -6,6 +6,7 @@ export const useFlightStore = defineStore({
   state: () => ({
     popularFlights: [] as IPopularFlight[],
     wayPoints: [] as IFlightWayPoint[],
+    searchResultPopularFlights: "",
   }),
   getters: {},
 
